@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
 import sg.edu.nus.iss.paf_rsvp_ui.model.Rsvp;
 import sg.edu.nus.iss.paf_rsvp_ui.service.RsvpService;
 
@@ -65,21 +67,23 @@ public class RsvpUIController {
 
     @GetMapping("/newRsvp")
     public String newRsvp(Model model) {
-
+    
         model.addAttribute("newRsvp", new Rsvp());
         return "newRsvp";
     }
 
     @PostMapping("/created")
-    public String newRsvp(@ModelAttribute("newRsvp") Rsvp newRsvp) {
+    public String newRsvp(@Valid @ModelAttribute("newRsvp") Rsvp newRsvp, BindingResult result) {
         System.out.println("--------------------------------------------------->" + newRsvp);
-        if (svc.addRsvp(newRsvp)) {
-
-            return "success";
+        if(result.hasErrors()) {
+            return "newRsvp";
         }
-
-        return "error";
-
+        
+        if(svc.addRsvp(newRsvp)) {
+            return "success";
+        } else {
+            return "error";
+        }    
     }
 
     @GetMapping("/getRsvpDetails")
@@ -115,9 +119,12 @@ public class RsvpUIController {
     // }
 
     @PostMapping("/update")
-    public String updatedRsvp(@ModelAttribute("rsvp") Rsvp updateRsvp, Model model) {
+    public String updatedRsvp(@Valid @ModelAttribute("rsvp") Rsvp updateRsvp, BindingResult result, Model model) {
         // System.out.println("----------------------------->" + updateRsvp.getId());
         // System.out.println("--------------------------->" + updateRsvp);
+        if(result.hasErrors()) {
+            return "update";
+        }
         if (svc.updateRsvp(updateRsvp)) {
             return "success";
         }

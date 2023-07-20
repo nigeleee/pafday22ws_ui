@@ -15,6 +15,7 @@
                     </td>
                     <td>
                         <input type="text" th:field="*{fullName}">
+                        <span class = "error" th:if = "${#fields.hasErrors('fullName')}" th:errors = "*{fullName}" style = "color:red;"></span>
                     </td>
                 </tr>
                 <tr>
@@ -23,6 +24,7 @@
                     </td>
                     <td>
                         <input type="text" th:field = "*{email}">
+                        <span class= "error" th:if = "${#fields.hasErrors('email')}" th:errors = "*{email}" style = "color:red;"></span>
                     </td>
                 </tr>
                 <tr>
@@ -31,6 +33,7 @@
                     </td>
                     <td>
                         <input type="text" th:field = "*{phone}">
+                        <span class= "error" th:if = "${#fields.hasErrors('phone')}" th:errors = "*{phone}" style = "color:red;"></span>
                     </td>
                 </tr>
                 <tr>
@@ -39,6 +42,7 @@
                     </td>
                     <td>
                         <input type="date" th:field = "*{confirmationDate}">
+                        <span class= "error" th:if = "${#fields.hasErrors('confirmationDate')}" th:errors = "*{confirmationDate}" style = "color:red;"></span>
                     </td>
                 </tr>
                 <tr>
@@ -52,6 +56,7 @@
                 
                     <td colspan="2">
                         <button type="submit">Submit</button>
+                        <input type="reset" value = "Clear">
                     </td>
                 </tr>  
             </table>    
