@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Rsvp</title>
+</head>
+<body>
+    <h1>Update your Rsvp</h1>
+        <table>
+            <form th:object="${rsvp}" th:action="@{/update}" method="post">
+                <table>
+                    <tr>   
+                        <td>
+                            Id:
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{id}" readonly>
+                        </td>
+                    <tr>    
+                        <td>
+                            Name:
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{fullName}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email:
+                        </td>
+                        <td>
+                            <input type="text" th:field = "*{email}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Phone:
+                        </td>
+                        <td>
+                            <input type="text" th:field = "*{phone}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Confirmation Date:
+                        </td>
+                        <td>
+                            <input type="date" th:field = "*{confirmationDate}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Comments:
+                        </td>
+                        <td>
+                            <textarea th:field = "*{comments}" cols="30" rows="10"></textarea>    
+                        </td>
+                    </tr>
+                    
+                        <td colspan="2">
+                            <button type="submit">Submit</button>
+                            <input type="reset" value="Clear">
+                        </td>
+                    </tr>  
+                </table>    
+            </form>
+        </table>
+</body>
+</html>

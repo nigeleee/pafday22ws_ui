@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Rsvps</title>
+</head>
+<body>
+    <h1>All Rsvps</h1>
+        <div th:each = "rsvp : ${rsvps}">
+            <hr>
+            <table>
+                <tr>
+                    <td>
+                        <span>Name:</span> 
+                        <span th:text="*{rsvp.fullName}"></span>
+                    </td>
+                </tr>       
+                <tr>
+                    <td>
+                        <span>Email:</span> 
+                        <span th:text="*{rsvp.email}"></span>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        <span>Phone Number:</span> 
+                        <span th:text="*{rsvp.phone}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Confirmation Date:</span> 
+                        <span th:text="*{rsvp.confirmationDate}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Comments:</span> 
+                        <span th:text="*{rsvp.comments}"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>
